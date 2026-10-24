@@ -1,0 +1,58 @@
+﻿<Page x:Class="_090207_P_123_Op_Payment.Pages.UserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_090207_P_123_Op_Payment.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Просмотр и поиск платежей"
+      Loaded="Page_Loaded">
+
+    <Grid Background="#F5F5F5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя строка (Grid.Row="0"): Панель фильтров и продвинутого поиска -->
+        <WrapPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="5,0">
+                <TextBlock Text="Поиск по ФИО:" VerticalAlignment="Center" FontSize="11" Margin="0,0,5,0"/>
+                <TextBox x:Name="fioFilterTextBox" MinWidth="140" Height="26" VerticalContentAlignment="Center" TextChanged="FilterChanged"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="5,0">
+                <TextBlock Text="Категория:" VerticalAlignment="Center" FontSize="11" Margin="5,0,5,0"/>
+                <!-- ЖЕЛЕЗНЫЙ ФИКС: Добавлен SelectedValuePath="ID" для корректного отображения и фильтрации категорий -->
+                <ComboBox x:Name="categoryComboBox" MinWidth="150" Height="26" VerticalContentAlignment="Center" 
+                          DisplayMemberPath="Name" SelectedValuePath="ID" SelectionChanged="FilterChanged"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="5,0">
+                <TextBlock Text="Сортировка:" VerticalAlignment="Center" FontSize="11" Margin="5,0,5,0"/>
+                <ComboBox x:Name="sortComboBox" MinWidth="160" Height="26" VerticalContentAlignment="Center" SelectedIndex="0" SelectionChanged="FilterChanged">
+                    <ComboBoxItem Content="По дате (сначала новые)"/>
+                    <ComboBoxItem Content="По дате (сначала старые)"/>
+                    <ComboBoxItem Content="По алфавиту ФИО (А-Я)"/>
+                    <ComboBoxItem Content="По алфавиту ФИО (Я-А)"/>
+                </ComboBox>
+            </StackPanel>
+
+            <Button x:Name="clearFiltersButton" Content="Сбросить фильтры" VerticalAlignment="Center" Height="26" Padding="10,0" Margin="10,0,0,0" FontSize="11" Click="clearFiltersButton_Click"/>
+        </WrapPanel>
+
+        <!-- Нижняя строка (Grid.Row="1"): Стандартный табличный виджет DataGrid (Замена плиткам) -->
+        <DataGrid Grid.Row="1" x:Name="DataGridUserPayments" AutoGenerateColumns="False" IsReadOnly="True" Margin="10" Background="White" BorderBrush="LightGray" BorderThickness="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата платежа" Binding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}" Width="100"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding Category.Name}" Width="130"/>
+                <DataGridTextColumn Header="Название платежа" Binding="{Binding Name}" Width="150"/>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding Price, StringFormat=\{0:N2\} руб.}" Width="100"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Num}" Width="80"/>
+                <!-- Навигационное свойство User.FIO для вывода имени плательщика -->
+                <DataGridTextColumn Header="Пользователь (ФИО)" Binding="{Binding User.FIO}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

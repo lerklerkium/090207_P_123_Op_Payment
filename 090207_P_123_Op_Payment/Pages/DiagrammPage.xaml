@@ -1,0 +1,75 @@
+﻿<Page x:Class="_090207_P_123_Op_Payment.Pages.DiagrammPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:_090207_P_123_Op_Payment.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Статистика платежей и выгрузка отчетов">
+
+    <Grid Background="#F5F5F5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель управления -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <TextBlock Text="Выбор пользователя:" VerticalAlignment="Center" Margin="0,0,5,0" FontSize="12"/>
+            <ComboBox x:Name="CmbUser" Width="180" Height="28" VerticalContentAlignment="Center" DisplayMemberPath="FIO" SelectionChanged="UpdateChart"/>
+
+            <TextBlock Text="Тип диаграммы:" VerticalAlignment="Center" Margin="20,0,5,0" FontSize="12"/>
+            <ComboBox x:Name="CmbDiagram" Width="180" Height="28" VerticalContentAlignment="Center" SelectionChanged="UpdateChart">
+                <ComboBoxItem Content="Столбчатая диаграмма (WPF)" IsSelected="True"/>
+            </ComboBox>
+
+            <Button x:Name="BtnExportExcel" Content="Экспорт в Excel" Width="110" Height="28" Margin="20,0,5,0" Click="BtnExportExcel_Click"/>
+            <Button x:Name="BtnExportWord" Content="Экспорт в Word" Width="110" Height="28" Margin="5,0,0,0" Click="BtnExportWord_Click"/>
+        </StackPanel>
+
+        <!-- ИСПРАВЛЕННЫЙ КОНТЕЙНЕР ДИАГРАММЫ -->
+        <Border Grid.Row="1" Background="White" BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="15" Padding="20">
+            <!-- Свойство ItemsSource будет привязано из C# -->
+            <ItemsControl x:Name="WpfChart" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <!-- UniformGrid принудительно распределяет столбцы равномерно по горизонтали -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Задаем фиксированную высоту контейнера в 260 пикселей, чтобы элементы не сжимались в 0 -->
+                        <Grid Margin="15,0" VerticalAlignment="Bottom" Height="260">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <!-- Свободное место сверху -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- Текст суммы расходов -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- Графический прямоугольник -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- Подпись категории -->
+                            </Grid.RowDefinitions>
+
+                            <!-- 1. Текст суммы расходов над столбцом -->
+                            <TextBlock Grid.Row="1" Text="{Binding Value, StringFormat=\{0:N0\} руб.}" HorizontalAlignment="Center" FontWeight="Bold" FontSize="11" Margin="0,0,0,8"/>
+
+                            <!-- 2. Визуальный столбец диаграммы (Height берется из C#) -->
+                            <Border Grid.Row="2" Height="{Binding Height}" Background="#3498DB" CornerRadius="4,4,0,0" Width="65" MinHeight="5" HorizontalAlignment="Center">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="6" Opacity="0.15" ShadowDepth="3" Direction="270"/>
+                                </Border.Effect>
+                            </Border>
+
+                            <!-- 3. Название категории под столбцом -->
+                            <TextBlock Grid.Row="3" Text="{Binding CategoryName}" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Width="90" Margin="0,8,0,0" FontSize="11" Foreground="#2C3E50"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+    </Grid>
+</Page>

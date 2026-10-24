@@ -1,0 +1,31 @@
+﻿<Window x:Class="_090207_P_123_Op_Payment.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_090207_P_123_Op_Payment"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"
+        Background="{DynamicResource BackgroundBrush}"
+        Icon="/res/res.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <Frame x:Name="MainFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated" Grid.Row="1" Source="Pages/AuthPage.xaml"/>
+        <TextBlock x:Name="DateTimeNow" Grid.Row="2" HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,0,15,0"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
+            <Button x:Name="BtnBack" Content="Назад" Width="100" Height="30" Margin="20,0,0,0" Click="BtnBack_Click"/>
+
+            <ComboBox x:Name="ThemeComboBox" Width="100" Height="30" Margin="20,0,0,0" 
+                      SelectionChanged="ThemeComboBox_SelectionChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <ComboBoxItem Content="Первая тема" IsSelected="True"/>
+                <ComboBoxItem Content="Вторая тема"/>
+            </ComboBox>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,30 @@
+﻿<Page x:Class="_090207_P_123_Op_Payment.Pages.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_090207_P_123_Op_Payment.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Панель администратора — Главное меню">
+
+    <Grid Background="#F5F5F5">
+        <!-- Заголовок меню -->
+        <TextBlock Text="Панель администрирования" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0" Foreground="#2C3E50"/>
+
+        <!-- Первая строчка кнопок -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,140,0,0">
+            <Button x:Name="BtnTab1" Content="Таблица пользователей" Width="180" Height="45" Margin="10,0" Click="BtnTab1_Click"/>
+            <Button x:Name="BtnTab2" Content="Таблица категорий" Width="180" Height="45" Margin="10,0" Click="BtnTab2_Click"/>
+            <Button x:Name="BtnTab3" Content="Таблица платежей" Width="180" Height="45" Margin="10,0" Click="BtnTab3_Click"/>
+        </StackPanel>
+
+        <!-- Вторая строчка кнопок (Добавлена плитка платежей) -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,220,0,0">
+            <Button x:Name="BtnTab4" Content="Диаграммы и Отчеты" Width="180" Height="45" Margin="10,0" Click="BtnTab4_Click"/>
+
+            <!-- НОВАЯ ПЯТАЯ КНОПКА ДЛЯ АДМИНИСТРАТОРА -->
+            <Button x:Name="BtnTileView" Content="Плитка платежей (Поиск)" Width="180" Height="45" Margin="10,0" Click="BtnTileView_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,50 @@
+﻿<Page x:Class="_090207_P_123_Op_Payment.Pages.RegPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_090207_P_123_Op_Payment.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Регистрация нового аккаунта">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="61*" />
+            <ColumnDefinition Width="739*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="45" />
+        </Grid.RowDefinitions>
+
+        <!-- Метки полей -->
+        <Label Grid.Column="1" Content="Введите логин" HorizontalAlignment="Left" Margin="91,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="128" />
+        <Label Grid.Column="1" Content="Введите пароль" HorizontalAlignment="Left" Margin="91,65,0,0" Grid.Row="1" VerticalAlignment="Top" Width="128" />
+        <Label Grid.Column="1" Content="Подтвердите пароль" HorizontalAlignment="Left" Margin="91,118,0,0" Grid.Row="1" VerticalAlignment="Top" Width="169" />
+        <Label Grid.Column="1" Content="Выберите роль" HorizontalAlignment="Left" Margin="91,177,0,0" Grid.Row="1" VerticalAlignment="Top" Width="128" />
+        <Label Grid.Column="1" Content="Введите ФИО" HorizontalAlignment="Left" Margin="91,250,0,0" Grid.Row="1" VerticalAlignment="Top" Width="128" />
+
+        <!-- Поля ввода -->
+        <TextBox x:Name="txtbxLog" Background="Transparent" ToolTip="Введите логин или почту" Grid.Column="1" HorizontalAlignment="Left" Margin="339,13,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Height="29" TextChanged="txtbxLog_TextChanged" />
+        <PasswordBox x:Name="passBxFrst" Background="Transparent" ToolTip="Введите пароль" Grid.Column="1" HorizontalAlignment="Left" Margin="339,65,0,0" Grid.Row="1" VerticalAlignment="Top" Width="182" Height="33" PasswordChanged="passBxFrst_PasswordChanged" />
+        <PasswordBox x:Name="passBxScnd" Background="Transparent" ToolTip="Повторите пароль" Grid.Column="1" HorizontalAlignment="Left" Margin="339,118,0,0" Grid.Row="1" VerticalAlignment="Top" Width="182" Height="33" PasswordChanged="passBxScnd_PasswordChanged" />
+
+        <ComboBox x:Name="comboBxRole" Grid.Column="1" ToolTip="Выберите роль" HorizontalAlignment="Left" Margin="339,180,0,0" Grid.Row="1" VerticalAlignment="Top" Width="182" Height="37">
+            <ComboBoxItem Content="Пользователь" />
+            <ComboBoxItem Content="Администратор" />
+        </ComboBox>
+
+        <TextBox x:Name="txtbxFIO" Background="Transparent" ToolTip="Введите ФИО" Grid.Column="1" Margin="339,243,0,0" Grid.Row="1" TextWrapping="Wrap" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="182" TextChanged="txtbxFIO_TextChanged" />
+
+        <!-- Подсказки-плейсхолдеры (lbl) -->
+        <Label x:Name="lblLogHitn" Foreground="Gray" Grid.Column="1" Content="Введите логин" HorizontalAlignment="Left" Margin="339,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="182" Height="29" MouseLeftButtonUp="lblLogHitn_MouseLeftButtonUp" />
+        <Label x:Name="lblPassHitn" Foreground="Gray" Grid.Column="1" Content="Введите пароль" HorizontalAlignment="Left" Margin="339,67,0,0" Grid.Row="1" VerticalAlignment="Top" Width="182" Height="29" MouseLeftButtonUp="lblPassHitn_MouseLeftButtonUp" />
+        <Label x:Name="lblPassSecHitn" Foreground="Gray" Grid.Column="1" Content="Повторите пароль" HorizontalAlignment="Left" Margin="339,118,0,0" Grid.Row="1" VerticalAlignment="Top" Width="182" Height="33" MouseLeftButtonUp="lblPassSecHitn_MouseLeftButtonUp" />
+        <Label x:Name="lblFioHitn" Foreground="Gray" Grid.Column="1" Content="Введите ФИО" HorizontalAlignment="Left" Margin="339,244,0,0" Grid.Row="1" VerticalAlignment="Top" Width="182" Height="42" MouseLeftButtonUp="lblFioHitn_MouseLeftButtonUp" />
+
+        <!-- Кнопка -->
+        <Button x:Name="regButton" Grid.Column="1" Content="Зарегистрироваться" ToolTip="Нажмите для регистрации" HorizontalAlignment="Left" Margin="345,302,0,0" Grid.Row="1" VerticalAlignment="Top" Width="170" Click="regButton_Click" />
+    </Grid>
+</Page>
